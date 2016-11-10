@@ -5,7 +5,7 @@
 
 		return {
 			registerSongPlay: function(songObj) {
-				songObj['playedAt'] = new Date();
+				songObj.playedAt = moment().format('L');
 				songPlays.$add(songObj);
 			},
 
@@ -21,5 +21,5 @@
 
 	angular
 		.module('blocJams')
-		.factory('Metric', ['$firebaseArray', Metric]);
+		.service('Metric', ['$firebaseArray', Metric]);
 })();
