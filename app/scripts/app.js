@@ -24,7 +24,15 @@
 			});
 	}
 
+	run.$inject = ['$rootScope', '$state', 'Metric'];
+	function run($rootScope, $state, Metric) {
+		$rootScope.$on('$stateChangeSuccess', function(event){
+			Metric.registerPageView($state.current);
+		});
+	}
+
 	angular
 		.module('blocJams', ['firebase', 'ui.router'])
-		.config(config);
+		.config(config)
+		.run(run);
 })();

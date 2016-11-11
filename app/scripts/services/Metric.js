@@ -2,6 +2,7 @@
 	function Metric($firebaseArray) {
 		var ref = firebase.database().ref();
 		var songPlays = $firebaseArray(ref.child("songPlays"));
+		var pageViews = $firebaseArray(ref.child("pageViews"));
 
 		return {
 			registerSongPlay: function(songObj) {
@@ -15,6 +16,11 @@
 					songs.push(song.title);
 				});
 				return songs;
+			},
+
+			registerPageView: function(stateObj) {
+				stateObj.viewedAt = moment().format('L');
+				pageViews.$add(stateObj);
 			}
 		};
 	}

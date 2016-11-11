@@ -34,6 +34,7 @@
 				});
 			});
 
+			//track a song is played when the song playback is complete 
 			currentBuzzObject.bind('ended', function(){
 				Metric.registerSongPlay(SongPlayer.currentSong);
 			});
